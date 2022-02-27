@@ -43,8 +43,22 @@ class DataModelView(viewsets.ViewSet):
             '200': openapi.Response('response description', DataModelSerializer)
         },
         security=[],
-        operation_id='Create',
-        operation_description='Import new data from MetOffice',
+        operation_id='Create or Update',
+        operation_description='''
+        Import new data from Met Office.
+        data_url is the url from Met Office after selecting region and parameters.
+        example: https://www.metoffice.gov.uk/pub/data/weather/uk/climate/datasets/Sunshine/ranked/England_E_and_NE.txt
+        
+        Model is updated if it already exists. That is if you provide the same url again after using it previously.
+        
+        This would have been modelled further to include the region and parameters:
+        {
+          'region': 'E',
+          'parameter': 'Sunshine'
+          'content': '...' # is the summarised data from met office
+        }
+        
+        ''',
     )
   def create(self, request):
     url = request.data.get('data_url')

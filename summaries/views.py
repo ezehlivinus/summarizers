@@ -51,13 +51,14 @@ class DataModelView(viewsets.ViewSet):
         
         Model is updated if it already exists. That is if you provide the same url again after using it previously.
         
-        This would have been modelled further to include the region and parameters:
+        This would have been modelled further to include the region and parameters: like this
         {
           'region': 'E',
           'parameter': 'Sunshine'
           'content': '...' # is the summarised data from met office
         }
         
+        I chose to make it simple
         ''',
     )
   def create(self, request):
